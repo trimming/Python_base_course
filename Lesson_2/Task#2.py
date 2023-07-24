@@ -21,8 +21,7 @@ while count < 100:
         predicate_list.append(choice([True, False]))
         i += 1
     count += 1
-    print(predicate_list)
-    right_expression = True
+    print(predicate_list)    
     temp = True
     temp_2 = False
     for item in predicate_list:
