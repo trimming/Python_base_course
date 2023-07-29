@@ -18,7 +18,7 @@ from random import randint
 garden_list: list = [5, 7, 2, 8, 6]
 print(garden_list)
 def get_max_berry(data_list: list, number_bush: int) -> int:
-    sum = 0
+    sum: int = 0
     if number_bush == len(data_list) - 1:
         sum = data_list[number_bush] + data_list[0] + data_list[number_bush - 1]
     else:            
