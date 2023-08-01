@@ -9,31 +9,51 @@
 equation_1: str = "2*x^2 + 4*x + 5 = 0"
 equation_2: str = "5*x^3 - 3*x^2 - 12 = 0"
 
-def get_dictionary(equation: str) -> list:
-    res_dict: list = list(equation.split())
-    temp_list: list = []
-    for i in range(len(res_dict)):
-        if "^" in res_dict[i]:
-            temp_list.append(res_dict[i].split('*x^'))
-        if "^" not in res_dict[i] and "*x" in res_dict[i]:
-            temp_list.append(res_dict[i].split('*x'))
-        if res_dict[i] == "+":
-            continue       
-        if res_dict[i] == "-":
-            temp_list.append(res_dict[i])
-        if res_dict[i] == '0':
-            continue      
-        try:
-            temp_list.append(int(res_dict[i]))
-        except:
-            continue       
-    for i in range(len(temp_list)):
-        if temp_list[i] == '-':
-            try:
-                temp_list[i + 1][0] = int(temp_list[i + 1][0])*-1
-            except:
-                temp_list[i + 1] = temp_list[i + 1]*-1
+# def get_dictionary(equation: str) -> list:
+#     res_dict: list = list(equation.split())
+#     temp_list: list = []
+#     for i in range(len(res_dict)):
+#         if "^" in res_dict[i]:
+#             temp_list.append(res_dict[i].split('*x^'))
+#         if "^" not in res_dict[i] and "*x" in res_dict[i]:
+#             temp_list.append(res_dict[i].split('*x'))
+#         if res_dict[i] == "+":
+#             continue       
+#         if res_dict[i] == "-":
+#             temp_list.append(res_dict[i])
+#         if res_dict[i] == '0':
+#             continue      
+#         try:
+#             temp_list.append(int(res_dict[i]))
+#         except:
+#             continue       
+#     for i in range(len(temp_list)):
+#         if temp_list[i] == '-':
+#             try:
+#                 temp_list[i + 1][0] = int(temp_list[i + 1][0])*-1
+#             except:
+#                 temp_list[i + 1] = temp_list[i + 1]*-1
             
-    print(temp_list)
-            
-get_dictionary(equation_1)
+#     print(temp_list)
+def get_temp_list(equation):
+    temp_list = equation.split()
+    j = 0
+    for i in temp_list:
+        if (i == "+") or (i == "="):
+            temp_list.remove(i)
+        if i == "-":
+            temp_list[j + 1] = "-" + temp_list[j + 1]
+            temp_list.remove(i)
+        j += 1
+    temp_list.pop()                            
+    return temp_list            
+equation_list = get_temp_list(equation_2)
+
+def get_dictionary(data_list):
+    res_dict = {}
+    for item in res_dict:
+        for key, value in item.items():
+            if 
+            print(data_list)
+
+get_dictionary(equation_list)
