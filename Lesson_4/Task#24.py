@@ -14,14 +14,12 @@
 # находясь перед некоторым кустом заданной во входном списке урожайности грядки.
 from random import randint
 
-# garden_list: list = [randint(1, 10) for _ in range(randint(5,10))]
-garden_list: list = [5, 7, 2, 8, 6]
+def get_max_berry(data_list: list, n: int) -> int:
+    summa = data_list[n] + data_list[n - 1] + data_list[n - (len(data_list) - 1)]
+    return summa 
+
+garden_list: list = [randint(1, 10) for _ in range(randint(5,10))]
+bush_number = randint(0, len(garden_list) - 1)
 print(garden_list)
-def get_max_berry(data_list: list, number_bush: int) -> int:
-    sum: int = 0
-    if number_bush == len(data_list) - 1:
-        sum = data_list[number_bush] + data_list[0] + data_list[number_bush - 1]
-    else:            
-        sum = data_list[number_bush] + data_list[number_bush + 1] + data_list[number_bush - 1]
-    return sum
-print(get_max_berry(garden_list, 4))
+print(bush_number)
+print(get_max_berry(garden_list, bush_number))

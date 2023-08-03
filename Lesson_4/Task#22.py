@@ -17,6 +17,7 @@ def get_set_numbers(number_1: int, number_2: int):
     score_1: set = set(list_1)
     score_2: set = set(list_2)
     score: set = score_1.intersection(score_2)
+    score = [i for i in score if i < i+1]
 
     print(*list_1)
     print(*list_2)
