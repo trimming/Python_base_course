@@ -35,7 +35,7 @@ def get_dictionary(data_list):
         elif "*x" in i:
             res_dict[i] = i.split('*x')
             res_dict[i][0] = int(res_dict[i][0])
-            res_dict[i][1] = int(res_dict[i][1] + '0')
+            res_dict[i][1] = int(res_dict[i][1] + '1')
         elif "x^" in i:    
             res_dict[i] = i.split('x^')
             res_dict[i][0] = int(res_dict[i][0] + '1')
@@ -43,14 +43,15 @@ def get_dictionary(data_list):
         elif "x" in i:    
             res_dict[i] = i.split('x')
             res_dict[i][0] = int(res_dict[i][0] + '1')
-            res_dict[i][1] = int(res_dict[i][1] + '0')
+            res_dict[i][1] = int(res_dict[i][1] + '1')
         else:
-            res_dict[i] = i.split()
+            res_dict[i] = (i + ' 0').split(' ')
             res_dict[i][0] = int(res_dict[i][0])
+            res_dict[i][1] = int(res_dict[i][1])
     resut_list = [v for k, v in res_dict.items()]
-    for i in resut_list:
-        if len(i) > 1:
-            i[0],i[1] = i[1],i[0]
+    # for i in resut_list:
+    #     if len(i) > 1:
+    #         i[0],i[1] = i[1],i[0]
     print(resut_list)      
     return resut_list
 
@@ -68,19 +69,16 @@ print(pow)
 def get_main_list(list_1, list_2, max_pow):
     main_list = list_1 + list_2
     base_list = []
-    last_el = 0
-    first_el = 0
-    for i in range(len(main_list)):
-        if len(main_list[i]) == 1:
-            last_el += main_list[i][0]            
-        if main_list[i][0] == max_pow:
-            first_el += main_list[i][1]
-            
-        # elif main_list[i][0]    
-    base_list.append(first_el)
-    base_list.append(last_el)        
-   
-    print(main_list)    
+    for i in list_2:
+        for j in list_1:
+            if i[1]==j[1]:
+                base_list.append(i[0] + j[0])
+            else:
+                base_list.append(i[0])
+                        
+
+        
+    # print(main_list)    
     print(base_list)    
 
 get_main_list(res_list_1, res_list_2, pow)
