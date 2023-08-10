@@ -19,3 +19,44 @@
 # Спартак:2 0 0 2 0
 # Зенит:2 1 0 1 3
 # Локомотив:2 2 0 0 6
+def make_table(data_list):
+    d = {}
+    for i in data_list:
+        match = i.split(';')
+        for i in range(0, len(match) - 1, 2):
+            key = match[i]
+            if key not in d:
+                d[key] = [1, 0, 0, 0, 0]
+            else:
+                d[key][0] += 1
+        if int(match[1]) > int(match[3]):
+            d[match[0]][1] += 1
+            d[match[2]][3] += 1
+            d[match[0]][4] += 3
+        elif int(match[1]) < int(match[3]):
+            d[match[2]][1] += 1
+            d[match[0]][3] += 1
+            d[match[2]][4] += 3
+        else:
+            d[match[0]][2] += 1
+            d[match[0]][4] += 1
+            d[match[2]][2] += 1
+            d[match[2]][4] += 1
+    return d
+def sort_and_show_table():
+    d = make_table(data_list)
+    sorted_values = sorted(d.values(), key=lambda club: club[-1], reverse=True)
+    new_d = {}
+    for i in sorted_values:
+        for k in d:
+            if d[k] == i:
+                new_d[k] = d[k]
+    i = 1
+    for key, values in new_d.items():
+        string_values = [str(i) for i in values]
+        joined = " ".join(string_values)
+        print(f"{i}.{key}: {joined}")
+        i += 1
+
+data_list = ['Спартак;2;Ростов;3', 'ЦСКА;0;Спартак;2', 'Ростов;2;ЦСКА;2', 'Зенит;1;Динамо;3', 'Динамо;1;Спартак;0']
+sort_and_show_table()
